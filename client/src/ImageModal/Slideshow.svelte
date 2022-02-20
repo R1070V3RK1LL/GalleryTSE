@@ -2,11 +2,11 @@
   import { images, imageShowingIndex } from "./stores.js";
   import Slide from "./Slide.svelte";
   import Modal from "svelte-simple-modal";
-  import CommentPopup from './CommentPopup.svelte'
+  import CommentPopup from "./CommentPopup.svelte";
   import Caption from "./Caption.svelte";
   import { deletePhoto } from "../../scripts/photos";
   import { Link } from "svelte-routing";
-  import { writable } from 'svelte/store';
+  import { writable } from "svelte/store";
 
   const commentModal = writable(null);
 
@@ -15,26 +15,27 @@
   };
 
   const deleteAPhoto = async () => {
-	if($images.length){
-    let picture = $images[$imageShowingIndex];
-    console.log({ picture });
-    try {
-      const res = await deletePhoto(picture._id);
-    } catch (e) {
-      console.error("Error", e);
+    if ($images.length) {
+      let picture = $images[$imageShowingIndex];
+      console.log({ picture });
+      try {
+        const res = await deletePhoto(picture._id);
+      } catch (e) {
+        console.error("Error", e);
+      }
+      images.update((images) => {
+        images.splice($imageShowingIndex, 1);
+        return (images = [...images]);
+      });
+      if ($imageShowingIndex >= $images.length) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
     }
-	images.update(images => {images.splice($imageShowingIndex,1);
-	return images = [...images]})
-  if ($imageShowingIndex >= $images.length) {
-    prevSlide();
-    }
-  else{
-    nextSlide();
-  }
-	}
   };
   /* IMAGE TO SHOW */
-  $: console.log({$images})
+  $: console.log({ $images });
   $: image = $images[$imageShowingIndex];
 
   const nextSlide = () => {
@@ -57,34 +58,34 @@
 </script>
 
 <Modal show={$commentModal}>
-	{#if $images.length}
-<main>
-  <!-- image gallery -->
-  <div class="container">
+  {#if $images.length}
+    <main>
+      <!-- image gallery -->
+      <div class="container">
+        <Slide
+          image={`http://localhost:8080/images/${image.filename || undefined}`}
+          altTag={image.title}
+          slideNo={$imageShowingIndex + 1}
+          totalSlides={$images.length}
+          attr={image.title}
+        />
+      </div>
 
-    <Slide
-      image={`http://localhost:8080/images/${image.filename || undefined}`}
-      altTag={image.title}
-      slideNo={$imageShowingIndex + 1}
-      totalSlides={$images.length}
-      attr={image.title}
-    />
+      <!-- Image text -->
+      <Caption
+        caption={image.comment}
+        on:prevClick={prevSlide}
+        on:nextClick={nextSlide}
+      />
 
-  </div>
-
-  <!-- Image text -->
-  <Caption
-    caption={image.comment}
-    on:prevClick={prevSlide}
-    on:nextClick={nextSlide}
-  />
-
-  <button on:click={showCommentModal}><Link to="/display-photos"/> Ajouter/modifier le commentaire</button>
-  <button on:click={deleteAPhoto}> Supprimer la photo</button>
-</main>
-{:else}
-	<p>Aucune photo n'a été trouvée</p>
-{/if}
+      <button on:click={showCommentModal}
+        ><Link to="/display-photos" /> Ajouter/modifier le commentaire</button
+      >
+      <button on:click={deleteAPhoto}> Supprimer la photo</button>
+    </main>
+  {:else}
+    <p>Aucune photo n'a été trouvée</p>
+  {/if}
 </Modal>
 
 <style>
@@ -94,7 +95,12 @@
     box-sizing: border-box;
     font-family: "Josefin Sans", sans-serif;
   }
-
+  p{
+    margin-top: 10%;
+    margin-left: 30%;
+    font-size: x-large;
+    color: red;
+  }
   main {
     /* width: 70vw; */
     display: flex;
@@ -103,14 +109,14 @@
     background-color: #222;
     /* box-shadow: 0 0 10px black; */
   }
-  button{
-  border: 2px solid blueviolet;
-  transition-duration:0.4s;
-}
-button:hover {
-  background-color: blueviolet;
-  color: white;
-}
+  button {
+    border: 2px solid blueviolet;
+    transition-duration: 0.4s;
+  }
+  button:hover {
+    background-color: blueviolet;
+    color: white;
+  }
   /* Position the image container (needed to position the left and right arrows) */
   .container {
     position: relative;

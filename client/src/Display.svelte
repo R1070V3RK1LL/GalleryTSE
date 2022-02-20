@@ -67,7 +67,7 @@
       </div>
     </section>
   {:else}
-    <p>Ajouter une photo à votre galerie</p>
+    <p>Veuillez cliquer sur l'onglet "Ajouter une image" pour créer votre galerie!</p>
   {/if}
 </Modal>
 
@@ -81,6 +81,12 @@
     font-size: xx-large;
     color:blueviolet;
   }
+  p{
+    margin-top: 10%;
+    margin-left:30%;
+    font-size: x-large;
+    color:red ;
+  }
   .galerie {
     margin-top: 50px;
     flex-direction: column;
@@ -93,8 +99,8 @@
   }
   :global(body) {
     margin: 0px;
-    font-family: "segoe ui";
     background-color: lightblue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
   button {
     margin-left: 10px;

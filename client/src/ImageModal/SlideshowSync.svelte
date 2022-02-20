@@ -66,7 +66,12 @@
     box-sizing: border-box;
     font-family: "Josefin Sans", sans-serif;
   }
-
+  p{
+    margin-top: 10%;
+    margin-left:40%;
+    font-size: x-large;
+    color:red ;
+  }
   main {
     width: 70vw;
     display: flex;
