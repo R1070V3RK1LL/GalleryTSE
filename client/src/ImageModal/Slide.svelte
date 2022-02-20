@@ -8,7 +8,7 @@
 
 <!-- Images numérotées -->
 <div class="mySlides">
-	<div class="slidenumber">{slideNumber} / {slideTotal}</div>
+	<div class="slidenumber">{slideNumber} sur {slideTotal}</div>
 	<img src={image} alt={altTag} title={title} class="img-responsive" />
 </div>
 
