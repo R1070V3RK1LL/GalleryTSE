@@ -1,16 +1,18 @@
 # GalleryTSE
-Academic project for sharing and commenting on pictures
+Projet scolaire de partage de photos
 
 # Installation
-You should have node installed and mongodb
+
+Il vous faut installer node et mongodb, puis exécuter les commades suivantes:
 ```
 npm install
 cd client
 npm install
 ```
 
-# Usage
-Create a database in mongodb and call it photos_db
+# Utilisation
+
+Créer une base de données dans mongodb et la nommer db_photogallery, exécuter ensuite les commandes:
 
 run server
 ```
