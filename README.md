@@ -1,4 +1,4 @@
-# share-my-photos
+# GalleryTSE
 Academic project for sharing and commenting on pictures
 
 # Installation
@@ -9,10 +9,10 @@ cd client
 npm install
 ```
 
-# Usage 
+# Usage
 Create a database in mongodb and call it photos_db
 
-run server 
+run server
 ```
 nodemon server.js
 ```
