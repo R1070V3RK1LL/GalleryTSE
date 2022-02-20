@@ -1,0 +1,33 @@
+{
+  "name": "gallerytse",
+  "version": "1.0.0",
+  "description": "Projet de partage d'images",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R1070V3RK1LL/GalleryTSE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/R1070V3RK1LL/GalleryTSE.git/issues"
+  },
+  "homepage": "https://github.com/R1070V3RK1LL/GalleryTSE.git#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^10.0.0",
+    "mongoose": "^6.0.14",
+    "multer": "^1.4.3",
+    "path": "^0.12.7"
+  }
+}
