@@ -6,16 +6,16 @@
 	export let attr;
 </script>
 
-<!-- Full-width images with number text -->
+<!-- Images numérotées -->
 <div class="mySlides">
-	<div class="numbertext">{slideNo} / {totalSlides}</div>
+	<div class="slidenumber">{slideNo} / {totalSlides}</div>
 	<img src={image} alt={altTag} title={attr} class="img-responsive" />
 </div>
 
 <style>
-	/* Number text (1/3 etc) */
-	.numbertext {
-		color: #f2f2f2;
+	/* Numéro de diapositive */
+	.slidenumber {
+		color: #fffb00;
 		font-size: 0.9rem;
 		padding: 8px 12px;
 		text-shadow: 1px 1px black;

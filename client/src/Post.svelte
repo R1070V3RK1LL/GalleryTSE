@@ -5,7 +5,7 @@
   import FilePondPluginImagePreview from "filepond-plugin-image-preview";
   import { navigate } from "svelte-routing";
 
-  // Register the plugins
+  // Enregistrer les plugins
   registerPlugin(
     FilePondPluginImageExifOrientation,
     FilePondPluginImagePreview

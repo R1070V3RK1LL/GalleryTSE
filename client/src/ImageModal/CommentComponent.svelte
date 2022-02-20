@@ -5,13 +5,11 @@
   const updateComment = (e) => {
     let picture = $images[$imageShowingIndex];
     commentPhoto(picture._id, {comment})
-
-    //images.update( async images => {return images = [...await getPhotos()]})
     closeModal();
 
   };
   const closeModal = () => {
-    console.log('closing...')
+    console.log('fermeture...')
   }
 </script>
 

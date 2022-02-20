@@ -6,7 +6,6 @@ const cors = require("cors");
 const parser = require('body-parser')
 
 const corsOptions = {
-  //origin: "https://gallerytse.vercel.app",
   origin: ["http://localhost:5000","https://gallerytse.vercel.app"],
   default:"http://localhost:5000"
 };

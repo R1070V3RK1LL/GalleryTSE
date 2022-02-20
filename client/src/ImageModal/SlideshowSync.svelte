@@ -5,19 +5,13 @@
   import { getPhotos } from "../../scripts/photos.js";
   import { onMount } from "svelte";
 
-  let keyCode;
- // Using keyboard to move between slides
-  function handleKeydown(event) {
-    keyCode = event.keyCode;
-    keyCode == 39 ? nextSlide() : keyCode == 37 ? prevSlide() : null;
-  }
   onMount(async () => {
     const response = await getPhotos();
     $images = [...response];
     console.log({ $images });
   });
 
-  /* IMAGE TO SHOW */
+  /* Image à afficher */
   $: console.log({ $images });
   $: image = $images[$imageShowingIndex];
 
@@ -40,11 +34,10 @@
   export const goToSlide = (number) => ($imageShowingIndex = number);
 </script>
 
-<svelte:window on:keydown={handleKeydown} />
 
 {#if $images.length}
   <main>
-    <!-- image gallery -->
+    <!-- galerie d'images -->
     <div class="container">
       <Slide
         image={`http://localhost:8080/images/${image.filename || ""}`}
@@ -55,7 +48,7 @@
       />
     </div>
 
-    <!-- Image text -->
+    <!-- Légende de l'image -->
     <Caption
       caption={image.comment}
       on:prevClick={prevSlide}
@@ -83,7 +76,7 @@
     box-shadow: 0 0 10px black;
   }
 
-  /* Position the image container (needed to position the left and right arrows) */
+  /* Position du conteneur de l'image */
   .container {
     position: relative;
     width: 100%;

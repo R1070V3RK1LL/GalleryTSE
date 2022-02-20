@@ -8,13 +8,6 @@
   import { Link } from "svelte-routing";
   import { writable } from 'svelte/store';
 
-  let keyCode;
- // Using keyboard to move between slides
-  function handleKeydown(event) {
-    keyCode = event.keyCode;
-    keyCode == 39 ? nextSlide() : keyCode == 37 ? prevSlide() : null;
-  }
-
   const commentModal = writable(null);
 
   const showCommentModal = (e) => {
@@ -62,7 +55,6 @@
 
   export const goToSlide = (number) => ($imageShowingIndex = number);
 </script>
-<svelte:window on:keydown={handleKeydown} />
 
 <Modal show={$commentModal}>
 	{#if $images.length}

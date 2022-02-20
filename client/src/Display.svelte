@@ -38,12 +38,7 @@
       return (images = [...response]);
     });
   };
-  // const handleOnInput = (e) => {
-  //   console.log(e.target.value)
-  //   if(!e.target.value){
-  //     images.update( async images => {return images = [...await getPhotos()]})
-  //   }
-  // }
+
 </script>
 
 

@@ -46,6 +46,9 @@ import SlideshowSync from "./ImageModal/SlideshowSync.svelte";
   img{
     width:60px;
     height:40px;
+}
+  img:hover{
+    transform:scale(2);
   }
   :global(body) {
     margin: 0px;
