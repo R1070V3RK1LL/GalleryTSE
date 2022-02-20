@@ -6,7 +6,7 @@ const cors = require("cors");
 const parser = require('body-parser')
 
 const corsOptions = {
-  origin: "http://localhost:5000",
+  origin: "https://gallerytse.vercel.app",
 };
 const PORT = '8080'
 const app = express();
@@ -21,15 +21,15 @@ db.mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log("Connected to the database!");
+    console.log("Connecté à la base de données");
   })
   .catch(err => {
-    console.log("Cannot connect to the database!\n", err);
+    console.log("Impossible de se connecter à la base de données\n", err);
     process.exit();
   });
 
 require('./app/routes/photo.routes')(app);
 app.use("/images", express.static('public/uploads'))
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Le serveur a démarré sur le port ${PORT}`);
 });

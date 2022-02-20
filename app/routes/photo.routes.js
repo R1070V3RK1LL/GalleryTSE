@@ -19,28 +19,28 @@ module.exports = (app) => {
 
   var router = require("express").Router();
 
-  // Create a new photo
+  // Créer une photo
   router.post("/", upload.single('photo'), photos.create);
 
-  // Comment to a photo
+  // Commenter une photo
   router.post("/:id/comment", photos.comment);
 
-  // Retrieve all photos
+  // Récupèrer toutes les photos
   router.get("/", photos.findAll);
 
-  // Get photos by comment
+  // Trouver une photo à partir du commentaire
   router.get("/comment", photos.findByComment);
 
-  // Retrieve a single photo with id
+  // Récupèrer une photo à partir de son id
   router.get("/:id", photos.findOne);
 
-  // Update a photo with id
+  // Mettre à jour la photo avec l'id "id"
   router.put("/:id", photos.update);
 
-  // Delete a photo with id
+  // Supprimer la photo d'identifiant "id"
   router.delete("/:id", photos.delete);
 
-  // Delete all photos
+  // Supprimer toutes les photos
   router.delete("/", photos.deleteAll);
 
   app.use("/api/photos", router);

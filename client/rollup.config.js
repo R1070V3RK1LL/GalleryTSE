@@ -2,7 +2,9 @@ import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
+import {
+	terser
+} from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import json from 'rollup-plugin-json';
 import sveltePreprocess from 'svelte-preprocess';
@@ -51,8 +53,12 @@ export default {
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
-		css({ output: 'bundle.css' }),
-		sveltePreprocess({ postcss: true }),
+		css({
+			output: 'bundle.css'
+		}),
+		sveltePreprocess({
+			postcss: true
+		}),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -63,12 +69,12 @@ export default {
 			browser: true,
 			dedupe: ['svelte', 'svelte/transition', 'svelte/internal'],
 		}),
-		    commonjs({
-      include: 'node_modules/**'
-    }),
-	builtins(),
-	globals(),
-    json(),
+		commonjs({
+			include: 'node_modules/**'
+		}),
+		builtins(),
+		globals(),
+		json(),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

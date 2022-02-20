@@ -1,52 +1,54 @@
 const Image = require("../models/image.model");
 const fs = require('fs')
 const path = require('path')
-const saveImage = async (title, filename) => {
+
+// fonction d'ajout d'image
+const addImage = async (title, filename) => {
   try {
-    const addedImg = await Image.create({
+    const imageAdded = await Image.create({
       title,
       filename,
       comment: "",
     });
-    return addedImg._id;
+    return imageAdded._id;
   } catch (err) {
     console.log("error:", err);
   }
 };
-// Create and Save a new Image
+// Téléverser une image
 exports.create = async (req, res, next) => {
   try {
-    console.log("request", req.file);
+    console.log("Requête", req.file);
     const { originalname, filename } = req.file;
-    const imageId = await saveImage(originalname, filename);
-    console.log("Image", imageId);
-    res.status(200).send({ imageId });
+    const imgId = await addImage(originalname, filename);
+    console.log("Image avec id:", imgId);
+    res.status(200).send({ imgId });
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
   }
 };
 
-// Add comment
+// Ajouter un commentaire
 exports.comment = async (req, res) => {
   const id = req.params.id;
   const { comment } = req.body;
   if (!id) {
     return res.status(400).send({
-      message: "Id is needed!",
+      message: "Id requis!",
     });
   }
-  console.log("id to update: ", id);
+  console.log("id de l'image à modifier: ", id);
   const image = await Image.find({ _id: id });
   console.log("image: ", image);
-  const updatedImage = await Image.updateOne(
+  const imgCommentee = await Image.updateOne(
     { _id: id },
     { $set: { comment } }
   );
-  res.status(201).send(`image with id : ${id} was updated successfully`);
+  res.status(201).send(`l'image avec l'id : ${id} a été modifiée avec succès`);
 };
 
-// Retrieve all Images from the database.
+// Récupérer toutes les images de la base
 exports.findAll = (req, res) => {
   Image.find()
     .then((data) => {
@@ -55,56 +57,56 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving images.",
+        message: err.message || "Une erreur est survenue lors de la récupération des données",
       });
     });
 };
 
-// Find a single Image with an id
+// Trouver une image avec un id spécifique
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
   Image.findById(id)
     .then((data) => {
       if (!data)
-        res.status(404).send({ message: "Not found Image with id " + id });
+        res.status(404).send({ message: "L'image avec l'id " + id +"n'a pas été trouvée"});
       else res.send(data);
     })
     .catch((err) => {
-      res.status(500).send({ message: "Error retrieving Image with id=" + id });
+      res.status(500).send({ message: "Erreur lors de la récupération de l'image dont l'id est:" + id });
     });
 };
 
-// Update a Image by the id in the request
+// Mettre à jour une image à partir de son id
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
-      message: "Data to update can not be empty!",
+      message: "Le champ ne peut être vide!",
     });
   }
   console.log("req: ", req.files);
   const id = req.params.id;
-  const newImage = {
+  const nouvelleImage = {
     title: req.file.filename,
     filename: req.file.originalname
   };
-  Image.findByIdAndUpdate(id, newImage, { useFindAndModify: false })
+  Image.findByIdAndUpdate(id, nouvelleImage, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Image with id=${id}. Maybe Image was not found!`,
+          message: `Impossible de mettre à jour l'image avec l'id: ${id}. L'image n'a pas été trouvée!`,
         });
       } else
-        res.status(204).send({ message: "Image was updated successfully." });
+        res.status(204).send({ message: "Image mise à jour" });
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Image with id=" + id,
+        message: "Erreur lors de l'actualisation de l'image d'id:" + id,
       });
     });
 };
 
-// Delete a Image with the specified id in the request
+// Supprimer une image avec un id spécifique
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -112,7 +114,7 @@ exports.delete = (req, res) => {
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete Image with id=${id}. Maybe Image was not found!`,
+          message: `Impossible de supprimer l'image avec l'id: ${id}. L'image n'a pas été trouvée!`,
         });
       } else {
         let path = `public/uploads/${data.filename}`
@@ -121,47 +123,47 @@ exports.delete = (req, res) => {
             console.error(err)
             return
           }
-        
+
           //file removed
         })
         res.send({
-          message: "Image was deleted successfully!",
+          message: "L'image a été supprimée avec succès!",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Image with id=" + id,
+        message: "Echec de la suppression de l'image d'id" + id,
       });
     });
 };
 
-// Delete all Images from the database.
+// Supprimer toutes les images de la base
 exports.deleteAll = (req, res) => {
   Image.deleteMany({})
     .then((data) => {
       let directory = 'public/uploads'
       fs.readdir(directory, (err, files) => {
         if (err) throw err;
-      
+
         for (const file of files) {
           fs.unlink(path.join(directory, file), err => {
             if (err) throw err;
           });
         }
       });      res.send({
-        message: `${data.deletedCount} Images were deleted successfully!`,
+        message: `${data.deletedCount} Les images ont été supprimées avec succès!`,
       });
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all Images.",
+          err.message || "Une erreur est survenue en tentant de supprimer toutes les images",
       });
     });
 };
 
-// Find by comment
+// Trouver une image à partir d'un commentaire
 exports.findByComment = async (req, res) => {
   const { params } = req.query;
   let {comment} = JSON.parse(params)
@@ -169,7 +171,7 @@ exports.findByComment = async (req, res) => {
   const images = await Image.find({ comment:{$regex:comment} });
   console.log("images: ", images);
   if (!images) {
-    res.status(404).send("No photos were found");
+    res.status(404).send("Aucune photo trouvée");
   }
   res.status(200).send(images);
 };

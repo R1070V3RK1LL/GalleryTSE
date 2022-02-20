@@ -10,11 +10,5 @@ const ImageSchema = new Schema(
   { timestamps: true }
 );
 
-// ImageSchema.method("toJSON", function () {
-//   const { __v, _id, ...object } = this.toObject();
-//   object.id = _id;
-//   return object;
-// });
-
 const ImageModel = mongoose.model("image", ImageSchema);
 module.exports = ImageModel;

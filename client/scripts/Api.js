@@ -1,17 +1,17 @@
 // Api.js
 import axios from "axios";
 
-// Create a instance of axios to use the same base url.
+// Crée une instance d'axios qui utilise l'url de base suivante:
 const axiosAPI = axios.create({
   baseURL : "http://localhost:8080/api/photos"
 });
 
-// implement a method to execute all the request from here.
+// Méthode exécutant toutes les requêtes
 const apiRequest = (method, url, request) => {
     const headers = {
         authorization: ""
     };
-    //using the axios instance to perform the request that received from each http method
+    //utilisant l'instance axios pour réaliser la requête reçue pour chaque méthode http
     return axiosAPI({
         method,
         url,
@@ -26,22 +26,22 @@ const apiRequest = (method, url, request) => {
       });
 };
 
-// function to execute the http get request
+// fonction qui exécute la requête http get
 const get = (url, request) => apiRequest("get",url,request);
 
-// function to execute the http delete request
+// fonction qui exécute la requête http delete
 const deleteRequest = (url, request) =>  apiRequest("delete", url, request);
 
-// function to execute the http post request
+// fonction qui exécute la requête http post
 const post = (url, request) => apiRequest("post", url, request);
 
-// function to execute the http put request
+// fonction qui exécute la requête http put
 const put = (url, request) => apiRequest("put", url, request);
 
-// function to execute the http path request
+// fonction qui exécute la requête http patch
 const patch = (url, request) =>  apiRequest("patch", url, request);
 
-// expose your method to other services or actions
+// partager la méthode pour les autres services
 const API ={
     get,
     delete: deleteRequest,
