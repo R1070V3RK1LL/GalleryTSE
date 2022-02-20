@@ -32,7 +32,12 @@
     }
 	images.update(images => {images.splice($imageShowingIndex,1);
 	return images = [...images]})
-	nextSlide();
+  if ($imageShowingIndex >= $images.length) {
+    prevSlide();
+    }
+  else{
+    nextSlide();
+  }
 	}
   };
   /* IMAGE TO SHOW */
@@ -64,16 +69,14 @@
 <main>
   <!-- image gallery -->
   <div class="container">
-    {#if $image}
-    <Slide
 
-      image={`http://localhost:8080/images/${image.filename || " "}`}
+    <Slide
+      image={`http://localhost:8080/images/${image.filename || undefined}`}
       altTag={image.title}
       slideNo={$imageShowingIndex + 1}
       totalSlides={$images.length}
       attr={image.title}
     />
-    {/if}
 
   </div>
 
