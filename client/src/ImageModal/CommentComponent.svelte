@@ -3,7 +3,6 @@
   import { images, imageShowingIndex } from "./stores.js";
   let comment = "";
   const updateComment = (e) => {
-    console.log("coin");
     let picture = $images[$imageShowingIndex];
     commentPhoto(picture._id, {comment})
 

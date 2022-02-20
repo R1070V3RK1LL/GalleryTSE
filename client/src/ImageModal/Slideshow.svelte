@@ -64,14 +64,16 @@
 <main>
   <!-- image gallery -->
   <div class="container">
-
+    {#if $image}
     <Slide
+
       image={`http://localhost:8080/images/${image.filename || " "}`}
       altTag={image.title}
       slideNo={$imageShowingIndex + 1}
       totalSlides={$images.length}
       attr={image.title}
     />
+    {/if}
 
   </div>
 

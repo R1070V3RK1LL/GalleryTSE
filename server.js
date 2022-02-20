@@ -6,7 +6,8 @@ const cors = require("cors");
 const parser = require('body-parser')
 
 const corsOptions = {
-  origin: "https://gallerytse.vercel.app",
+  //origin: "https://gallerytse.vercel.app",
+  origin: "https://localhost:5000",
 };
 const PORT = '8080'
 const app = express();
