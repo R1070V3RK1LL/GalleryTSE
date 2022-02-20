@@ -1,9 +1,8 @@
 <script>
   import Display from "./Display.svelte";
   import Post from "./Post.svelte";
-  import { Router, Link, Route } from "svelte-routing";
-  import Slideshow from "./ImageModal/Slideshow.svelte";
-import SlideshowSync from "./ImageModal/SlideshowSync.svelte";
+  import { Router, Route } from "svelte-routing";
+  import SlideshowSync from "./ImageModal/SlideshowSync.svelte";
   export let url = "";
 </script>
 
@@ -13,13 +12,6 @@ import SlideshowSync from "./ImageModal/SlideshowSync.svelte";
     <div class="nav-header">
       <div class="nav-title nav-links">GalerieTSE</div>
       <img src="https://fleurdheaven.fr/wp-content/uploads/2021/09/fleur.png" alt="logo" >
-    </div>
-    <div class="nav-btn">
-      <label for="nav-check">
-        <span />
-        <span />
-        <span />
-      </label>
     </div>
 
     <div class="nav-links">
@@ -72,10 +64,6 @@ import SlideshowSync from "./ImageModal/SlideshowSync.svelte";
     padding: 0px 10px 10px 10px;
   }
 
-  .nav > .nav-btn {
-    display: none;
-  }
-
   .nav > .nav-links {
     display: inline;
     float: right;
@@ -98,28 +86,6 @@ import SlideshowSync from "./ImageModal/SlideshowSync.svelte";
   }
 
   @media (max-width: 600px) {
-    .nav > .nav-btn {
-      display: inline-block;
-      position: absolute;
-      right: 0px;
-      top: 0px;
-    }
-    .nav > .nav-btn > label {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      padding: 13px;
-    }
-    .nav > .nav-btn > label:hover,
-    .nav #nav-check:checked ~ .nav-btn > label {
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-    .nav > .nav-btn > label > span {
-      display: block;
-      width: 25px;
-      height: 10px;
-      border-top: 2px solid #eee;
-    }
     .nav > .nav-links {
       position: absolute;
       display: block;

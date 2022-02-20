@@ -27,10 +27,10 @@
         images.splice($imageShowingIndex, 1);
         return (images = [...images]);
       });
-      if ($imageShowingIndex >= $images.length) {
-        prevSlide();
-      } else {
+      if ($imageShowingIndex <= $images.length) {
         nextSlide();
+      } else {
+        prevSlide();
       }
     }
   };
@@ -102,12 +102,10 @@
     color: red;
   }
   main {
-    /* width: 70vw; */
+    width:70%;
     display: flex;
     flex-direction: column;
-    /* margin: 10% auto; */
     background-color: #222;
-    /* box-shadow: 0 0 10px black; */
   }
   button {
     border: 2px solid blueviolet;
@@ -117,7 +115,7 @@
     background-color: blueviolet;
     color: white;
   }
-  /* Position the image container (needed to position the left and right arrows) */
+  /* Position du conteneur */
   .container {
     position: relative;
   }

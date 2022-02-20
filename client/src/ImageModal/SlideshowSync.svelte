@@ -73,10 +73,10 @@
     color:red ;
   }
   main {
-    width: 70vw;
+    width:30%;
     display: flex;
     flex-direction: column;
-    margin: 10% auto;
+    margin: 1% auto;
     background-color: #222;
     box-shadow: 0 0 10px black;
   }
@@ -84,6 +84,5 @@
   /* Position du conteneur de l'image */
   .container {
     position: relative;
-    width: 100%;
   }
 </style>
