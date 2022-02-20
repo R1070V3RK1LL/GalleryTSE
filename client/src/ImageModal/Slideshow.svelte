@@ -14,7 +14,7 @@
     commentModal.set(CommentPopup);
   };
 
-  const deleteAPhoto = async () => {
+  const supprimerPhoto = async () => {
     if ($images.length) {
       let picture = $images[$imageShowingIndex];
       console.log({ picture });
@@ -34,7 +34,7 @@
       }
     }
   };
-  /* IMAGE TO SHOW */
+  /* Image à afficher */
   $: console.log({ $images });
   $: image = $images[$imageShowingIndex];
 
@@ -65,9 +65,9 @@
         <Slide
           image={`http://localhost:8080/images/${image.filename || undefined}`}
           altTag={image.title}
-          slideNo={$imageShowingIndex + 1}
-          totalSlides={$images.length}
-          attr={image.title}
+          slideNumber={$imageShowingIndex + 1}
+          slideTotal={$images.length}
+          title={image.title}
         />
       </div>
 
@@ -81,7 +81,7 @@
       <button on:click={showCommentModal}
         ><Link to="/display-photos" /> Ajouter/modifier le commentaire</button
       >
-      <button on:click={deleteAPhoto}> Supprimer la photo</button>
+      <button on:click={supprimerPhoto}> Supprimer la photo</button>
     </main>
   {:else}
     <p>Aucune photo n'a été trouvée</p>

@@ -42,9 +42,9 @@
       <Slide
         image={`http://localhost:8080/images/${image.filename || ""}`}
         altTag={image.title}
-        slideNo={$imageShowingIndex + 1}
-        totalSlides={$images.length}
-        attr={image.title}
+        slideNumber={$imageShowingIndex + 1}
+        slideTotal={$images.length}
+        title={image.title}
       />
     </div>
 

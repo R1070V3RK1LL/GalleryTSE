@@ -1,15 +1,15 @@
 <script>
-	export let slideNo;
-	export let totalSlides;
+	export let slideNumber;
+	export let slideTotal;
 	export let image;
 	export let altTag;
-	export let attr;
+	export let title;
 </script>
 
 <!-- Images numérotées -->
 <div class="mySlides">
-	<div class="slidenumber">{slideNo} / {totalSlides}</div>
-	<img src={image} alt={altTag} title={attr} class="img-responsive" />
+	<div class="slidenumber">{slideNumber} / {slideTotal}</div>
+	<img src={image} alt={altTag} title={title} class="img-responsive" />
 </div>
 
 <style>
