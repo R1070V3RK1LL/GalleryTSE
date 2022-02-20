@@ -23,16 +23,16 @@ import SlideshowSync from "./ImageModal/SlideshowSync.svelte";
     </div>
 
     <div class="nav-links">
-      <a href="/display-photos">Galerie</a>
-      <a href="/slideshow">Diaporama</a>
-      <a href="/add-photos">Ajouter une image</a>
+      <a href="/afficher-photos">Galerie</a>
+      <a href="/diaporama">Diaporama</a>
+      <a href="/ajouter-photos">Ajouter une image</a>
     </div>
   </div>
 
   <Route path="/"><Display /></Route>
-  <Route path="/display-photos"><Display /></Route>
-  <Route path="/add-photos"><Post /></Route>
-  <Route path="/slideshow"><SlideshowSync /></Route>
+  <Route path="/afficher-photos"><Display /></Route>
+  <Route path="/ajouter-photos"><Post /></Route>
+  <Route path="/diaporama"><SlideshowSync /></Route>
 </Router>
 
 <style>
